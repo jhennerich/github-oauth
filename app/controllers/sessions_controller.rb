@@ -1,15 +1,17 @@
 class SessionsController < ApplicationController
   def create
-    client_id = YOUR_CLIENT_ID_GOES_HERE
-    client_secret = YOUR_CLIENT_SECRET_GOES_HERE
     code = params[:code]
+    client_id = ENV['client_id']
+    client_secrect = ENV['client_secrect']
   
+    binding.pry
     conn = Faraday.new(url: 'https://github.com', headers: {'Accept': 'application/json'})
   
     response = conn.post('/login/oauth/access_token') do |req|
+      binding.pry
       req.params['code'] = code
       req.params['client_id'] = client_id
-      req.params['client_secret'] = client_secret
+      req.params['client_secret'] = client_secrect
     end
   
     data = JSON.parse(response.body, symbolize_names: true)
