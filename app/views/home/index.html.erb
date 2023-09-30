@@ -1,3 +1,12 @@
 <h1>Welcome to your OAuth Practice Repo!!</h1>
+<p>
+<%= link_to "https://github.com/login/oauth/authorize?client_id="+ @client_id + "&scope=repo" do %>
+    <%= image_tag'github.png', size: "250x100" %>
+<% end %>
+</p>
 
-<%= link_to "Login", "https://github.com/login/oauth/authorize?client_id=47fd731159e9a3f9414b&scope=repo" %>
+<p>
+<%= link_to "https://accounts.google.com/o/oauth2/v2/auth?client_id="+ @client_id + "&response_type=code&scope=https://www.googleapis.com/auth/cloud-platform.read-only" do %>
+    <%= image_tag'google.png', size: "230x75" %>
+<% end %>
+</p>
