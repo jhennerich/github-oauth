@@ -22,15 +22,19 @@ class GithubController < ApplicationController
       }
     )
     response = conn.get('/user')
+    
     data = JSON.parse(response.body, symbolize_names: true)
+
 
     user          = User.find_or_create_by(uid: data[:id])
     user.username = data[:login]
+    user.name = data[:name]
     user.uid      = data[:id]
     user.token    = access_token
     user.save
 
     session[:user_id] = user.id
+
     redirect_to dashboard_path
   end
 end
